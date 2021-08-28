@@ -1,0 +1,51 @@
+import java.util.Scanner;
+class Main 
+{
+    public int bs(int arr[], int item, int first, int last)
+    {
+        if(last>= first)
+        {
+            int mid = (first + last)/2;
+            
+            if(arr[mid] == item)
+            {
+                return mid+1;
+            }
+            else if(arr[mid] > item)
+            {
+                return bs(arr,item,first,mid);
+            }
+            else
+            {
+                return bs(arr,item,mid,last);
+            }
+        }
+        else
+        return 0;
+    }
+    
+    public static void main(String[] args)
+    {
+        Main m = new Main();
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the size of the array :-" );
+        int n ;
+        n = in.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter the elements of the array :-");
+        for(int i = 0; i<n;i++)
+        {
+            arr[i] = in.nextInt();
+        }
+        System.out.println("Enter the element to be searched :-");
+        int item = in.nextInt();
+        int result = m.bs(arr,item,0,n-1);
+        
+        if(result != 0 )
+        {
+            System.out.println("The Element is found at the position "+ result);
+        }
+        else
+        System.out.println("The element is not found in the sequence");
+    }
+}
